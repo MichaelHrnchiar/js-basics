@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Hello World</h1>
+    <!-- login form -->
+    <h1>Sign In</h1>
+    <div><input placeholder="username" type="text" name="username" /></div>
+    <div><input placeholder="password" type="password" name="password" /></div>
+    <button onclick="handleSubmit()" class="btn-submit">Submit</button>
+
+    <div class="success-fail-msg">--</div>
+
+    <script>
+      // First JavaScript code!
+      console.log("Hello World");
+
+      // when we click submit... handleSubmit
+
+      // 1. grab the button we want to click
+      const myBtn = document.querySelector(".btn-submit");
+      // 2. add a "click" event listener
+      // we're actually doing this above in the html
+      // myBtn.addEventListener("click", handleSubmit);
+
+      function handleSubmit() {
+        // 1. grab the the inputs
+        const usernameInput = document.querySelector("[name=username]");
+        const emailInput = document.querySelector("[name=email]");
+        const passwordInput = document.querySelector("[name=password]");
+
+        // 1. grab the form data from the inputs
+        const username = usernameInput?.value;
+        const email = emailInput?.value;
+        const password = passwordInput?.value;
+
+        // 1.1 optional - validate the form data, show error state in the form
+        // if(!isValid({username,email,password})){
+        //   showErrorState()
+        // return
+        // }
+
+        // 2. send it to the server
+        // FAKE 2. send it to localStorage in the browser
+
+        const userFromDbString = window.localStorage.getItem(
+          `js-basics:${username}`
+        );
+
+        const userFromDb = userFromDbString
+          ? JSON.parse(userFromDbString)
+          : null;
+
+        const pwFromDb = userFromDb?.password;
+
+        // check that the passwords match
+        // github copilot https://github.com/github-copilot/signup/billing?payment_duration=monthly
+
+        const doesPwMatch = pwFromDb && password === pwFromDb;
+
+        console.log("💕😁 ~ handleSubmit ~ userFromDb", userFromDb);
+
+        if (doesPwMatch) {
+          // handle it
+        } else {
+        }
+      }
+    </script>
+  </body>
+</html>
